@@ -129,3 +129,12 @@ cd /user/home/spark_app/case-study-car-crash/spark-submit
 sh spark-submit.sh analytics1
 ```
 5. The above command triggeres the analytics1.py module and the result data set will be found in $your-target-data-folder/ANALYTICS1/
+
+
+## Tools and versions
+
+| s.no | Tools/Languages | Version |
+|------|-----------------|---------|
+| 1    | spark           | 3.0.1   |
+| 2    | python          | 3.8.5   |
+| 3    | bash            | 3.2.57  |
