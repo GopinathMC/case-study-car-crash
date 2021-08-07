@@ -72,11 +72,11 @@ The config file looks like below
   "write_mode": "overwrite"
 }
 ```
-a) app_name: Defines the spark application name
-b) source_data_path: Defines the folder where input data files are stored
-c) output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
+1. app_name: Defines the spark application name
+2. source_data_path: Defines the folder where input data files are stored
+3. output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
 i.e. for analytics1.py analysis the output files will be written to $output_data_path/ANALYTICS1/
-d) write_mode: Defines the spark write mode of the application. (i.e. overwrite, append)
+4. write_mode: Defines the spark write mode of the application. (i.e. overwrite, append)
 
 ###spark-submit
 This folder contain the spark-submit.sh shell script shown as below, which can be triggered like ```sh spark-submit analytics$```
