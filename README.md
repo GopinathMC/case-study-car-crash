@@ -72,8 +72,31 @@ The config file looks like below
   "write_mode": "overwrite"
 }
 ```
-1. app_name: Defines the spark application name
-2. source_data_path: Defines the folder where input data files are stored
-3. output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
+a) app_name: Defines the spark application name
+b) source_data_path: Defines the folder where input data files are stored
+c) output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
 i.e. for analytics1.py analysis the output files will be written to $output_data_path/ANALYTICS1/
-4. write_mode: Defines the spark write mode of the application. (i.e. overwrite, append)
+d) write_mode: Defines the spark write mode of the application. (i.e. overwrite, append)
+
+###spark-submit
+This folder contain the spark-submit.sh shell script shown as below, which can be triggered like ```sh spark-submit analytics$```
+```
+#!/bin/bash
+
+analytics_id=$1
+
+DEPEND_DIR=/Users/dev/Documents/assignment/case-study-car-crash/jobs/
+SPARK_HOME=/Users/dev/Downloads/spark-3.0.1-bin-hadoop2.7
+APP_DIR=/Users/dev/Documents/assignment/case-study-car-crash
+
+cd $SPARK_HOME
+
+bin/spark-submit --master local[*] --py-files $DEPEND_DIR"data_extracter.py",$DEPEND_DIR$analytics_id".py" --files $APP_DIR"/config.json" $APP_DIR"/main.py" --job $analytics_id --config_folder $APP_DIR
+
+```
+a) analytics_id: The input parameter for the spark_submit.sh. This decides which analytics job should run. It can be [analytics1,analytics2,analytics3,analytics4,analytics5,analytics6,analytics7,analytics8]
+b) DEPEND_DIR: The directory where the dependency module, ETL job modules are placed that will be send to spark application using spark-submit command.
+c) SPARK_HOME: Spark home directory
+d) APP_DIR: This application installed directory.
+
+#### Spark-Submit command
