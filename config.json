@@ -1,0 +1,6 @@
+{
+  "app_name": "US_ACCIDENT_REPORT",
+  "source_data_path": "/Users/dev/Documents/assignment/case_study/Data",
+  "output_data_path": "/Users/dev/Documents/assignment/case_study/Data/OUTPUT",
+  "write_mode": "overwrite"
+}
