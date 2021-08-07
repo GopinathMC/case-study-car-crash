@@ -53,3 +53,27 @@ root/
 | 6    | analytics6.py | Get the top5 driver zip code where alcohol is the reason for crashes                                                                                                                    |
 | 7    | analytics7.py | Count the distinct crash_id with no damage property, damage level > 4 and car avails insurance                                                                                     |
 | 8    | analytics8.py | Get top5 vehicle makes where licensed drivers are charged for speeding related offenses, uses top10 vehicle colours,and car licensed with top25 states with highest number of offenses |
+
+### Main module
+```root/main.py```
+1. This is the entry point for this spark application which will be called through spark-submit command.
+2. It parse the spark-submit additional arguments using argparse python library, and calls the necessary ETL jobs. 
+3. Here the spark session object, spark logger object is created, and triggers the respective analytics$.py file based on the --job parameter passed with spark-submit command. i.e spark-submit main.py --job analytics1, this will tells the main.py file to call analytics1.py file to perform necessary operation
+4. This is the place where ```config.json``` file is read and pass it to the corresponding analytics$.py modules.
+
+### Configuring input and output data folder
+```root/config.json```
+The config file looks like below
+```
+{
+  "app_name": "US_ACCIDENT_REPORT",
+  "source_data_path": "/Users/dev/Documents/assignment/case_study/Data",
+  "output_data_path": "/Users/dev/Documents/assignment/case_study/Data/OUTPUT",
+  "write_mode": "overwrite"
+}
+```
+1. app_name: Defines the spark application name
+2. source_data_path: Defines the folder where input data files are stored
+3. output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
+i.e. for analytics1.py analysis the output files will be written to $output_data_path/ANALYTICS1/
+4. write_mode: Defines the spark write mode of the application. (i.e. overwrite, append)
