@@ -3,6 +3,7 @@
  
 # Project Structure
 
+```
 root/
   |-- jobs/
   |   |-- __init__.py
@@ -19,7 +20,8 @@ root/
   |-- main.py
   |-- config.json
   |-- spark-submit
-      |-- spark-submit.sh
+  |   |-- spark-submit.sh
+```
  
 
 
