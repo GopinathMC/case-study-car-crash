@@ -1,4 +1,4 @@
-# case-study-car-crash
+# CASE-STUDY-CAR-CRASH
  PySpark Project perform various analytical operations on US accident data
  
 ## Project Structure
