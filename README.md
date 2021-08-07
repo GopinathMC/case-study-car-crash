@@ -27,8 +27,8 @@ root/
 ## Project Structure Explanation
 ### Jobs Module 
 ```root/jobs/```
-1. This module contains the dependency python script like ```data_extracter.py```,```logging.py``` and ETL scripts for the various business analysis
-2. ```data_extracter.py``` file contains following methods which will be imported in analytics$.py file to perform ETL
+1. This module contains the dependency python modules like ```data_extracter.py```,```logging.py``` and ETL modules for the various business analysis
+2. ```data_extracter.py``` module contains following methods which will be imported in analytics$.py module to perform ETL
 ```
          |-- extract_data: get the input file path, create spark dataframe and return it
          |-- extract_join_data: get two spark dataframe,the type of join and joining columns to perform the join operation
@@ -40,7 +40,7 @@ root/
          |-- run_job: triggered by the main function and call the dependent methods to perform ETL operation.
          |-- transform_data: the actual business logic is written in this function. It converts the raw dataframe to the final desired dataframe
 ```
-5. Following operations are performed by the respective analytics$.py files
+5. Following operations are performed by the respective analytics$.py modules
 
 
 | s.no | module        | operation                                                                                                                                                                               |
@@ -52,4 +52,4 @@ root/
 | 5    | analytics5.py | For all body styles, get the top ethnic user group involved in crashes                                                                                                                  |
 | 6    | analytics6.py | Get the top5 driver zip code where alcohol is the reason for crashes                                                                                                                    |
 | 7    | analytics7.py | Count the distinct crash_id where no damage property with damage level > 4 and car avails insurance                                                                                     |
-| 8    | analytics8.py | #Get top5 vehicle makes where licensed drivers are charged for speeding related offenses, uses top10 vehicle colours,and car licensed with top25 states with highest number of offenses |
+| 8    | analytics8.py | Get top5 vehicle makes where licensed drivers are charged for speeding related offenses, uses top10 vehicle colours,and car licensed with top25 states with highest number of offenses |
