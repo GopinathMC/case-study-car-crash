@@ -64,7 +64,7 @@ root/
 ### Configuring input and output data folder
 ```root/config.json```
 The config file looks like below
-```
+```json
 {
   "app_name": "US_ACCIDENT_REPORT",
   "source_data_path": "/Users/dev/Documents/assignment/case_study/Data",
@@ -80,7 +80,7 @@ d) write_mode: Defines the spark write mode of the application. (i.e. overwrite,
 
 ###spark-submit
 This folder contain the spark-submit.sh shell script shown as below, which can be triggered like ```sh spark-submit analytics$```
-```
+```shell
 #!/bin/bash
 
 analytics_id=$1
@@ -91,8 +91,12 @@ APP_DIR=/Users/dev/Documents/assignment/case-study-car-crash
 
 cd $SPARK_HOME
 
-bin/spark-submit --master local[*] --py-files $DEPEND_DIR"data_extracter.py",$DEPEND_DIR$analytics_id".py" --files $APP_DIR"/config.json" $APP_DIR"/main.py" --job $analytics_id --config_folder $APP_DIR
-
+bin/spark-submit \
+--master local[*] \
+--py-files $DEPEND_DIR"data_extracter.py",$DEPEND_DIR$analytics_id".py" \
+--files $APP_DIR"/config.json" $APP_DIR"/main.py" \
+--job $analytics_id \
+--config_folder $APP_DIR
 ```
 1. analytics_id: The input parameter for the spark_submit.sh. This decides which analytics job should run. It can be analytics1,analytics2,analytics3,analytics4,analytics5,analytics6,analytics7,analytics8.
 2. DEPEND_DIR: The directory where the dependency module, ETL job modules are placed that will be send to spark application using spark-submit command.
@@ -115,7 +119,7 @@ SPARK_HOME=$your-spark-installed-dir
 APP_DIR=$app_local_dir
 ```
 3. Open config.json file and define the input and output files data path
-```
+```json
 source_data_path: $your-source-data-folder
 output_data_path: $your-target-data-folder
 ```
