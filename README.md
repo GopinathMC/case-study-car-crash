@@ -111,21 +111,21 @@ bin/spark-submit \
 5. --config-folder: For parsing the config file by the main.py script
 
 ## Installation Steps and Running
-1. Clone this repo or download the zip file, and place the case-study-car-crash folder in your local directory.i.e $app_local_dir
+1. Clone this repo or download the zip file, and place the case-study-car-crash folder in your local directory. For clear understanding lets say the app installed directory is /user/home/spark_app
 2. Go to spark-submit folder and edit the below properties in spark-submit.sh file as below
 ```
-DEPEND_DIR=$app_local_dir/case-study-car-crash/jobs/
+DEPEND_DIR=/user/home/spark_app/case-study-car-crash/jobs/
 SPARK_HOME=$your-spark-installed-dir
-APP_DIR=$app_local_dir
+APP_DIR=/user/home/spark_app/case-study-car-crash
 ```
 3. Open config.json file and define the input and output files data path
 ```json
-source_data_path: $your-source-data-folder
-output_data_path: $your-target-data-folder
+source_data_path: $your-source-data-folder-path
+output_data_path: $your-target-data-folder-path
 ```
 4. The final step is to run the application. Move to $app_local_dir/spark-submit/ and call the spark-submit script as below
 ```
-cd $app_local_dir/spark-submit
+cd /user/home/spark_app/case-study-car-crash/spark-submit
 sh spark-submit.sh analytics1
 ```
 5. The above command triggeres the analytics1.py module and the result data set will be found in $your-target-data-folder/ANALYTICS1/
