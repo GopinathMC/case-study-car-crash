@@ -94,9 +94,16 @@ cd $SPARK_HOME
 bin/spark-submit --master local[*] --py-files $DEPEND_DIR"data_extracter.py",$DEPEND_DIR$analytics_id".py" --files $APP_DIR"/config.json" $APP_DIR"/main.py" --job $analytics_id --config_folder $APP_DIR
 
 ```
-a) analytics_id: The input parameter for the spark_submit.sh. This decides which analytics job should run. It can be [analytics1,analytics2,analytics3,analytics4,analytics5,analytics6,analytics7,analytics8]
-b) DEPEND_DIR: The directory where the dependency module, ETL job modules are placed that will be send to spark application using spark-submit command.
-c) SPARK_HOME: Spark home directory
-d) APP_DIR: This application installed directory.
+1. analytics_id: The input parameter for the spark_submit.sh. This decides which analytics job should run. It can be analytics1,analytics2,analytics3,analytics4,analytics5,analytics6,analytics7,analytics8.
+2. DEPEND_DIR: The directory where the dependency module, ETL job modules are placed that will be send to spark application using spark-submit command.
+3. SPARK_HOME: Spark home directory
+4. APP_DIR: This application installed directory.
 
 #### Spark-Submit command
+1. --master: Runs the spark application on local mode
+2. --py-files: Python dependency files which will be called by the main function.
+3. --files: Passes the config file to the spark application.
+4. --job: calls the corresponding analytics$.py module.
+5. --config-folder: For parsing the config file by the main.py script
+
+## Installation Steps and Running
