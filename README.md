@@ -107,3 +107,21 @@ bin/spark-submit --master local[*] --py-files $DEPEND_DIR"data_extracter.py",$DE
 5. --config-folder: For parsing the config file by the main.py script
 
 ## Installation Steps and Running
+1. Clone this repo or download the zip file, and place the case-study-car-crash folder in your local directory.i.e $app_local_dir
+2. Go to spark-submit folder and edit the below properties in spark-submit.sh file as below
+```
+DEPEND_DIR=$app_local_dir/case-study-car-crash/jobs/
+SPARK_HOME=$your-spark-installed-dir
+APP_DIR=$app_local_dir
+```
+3. Open config.json file and define the input and output files data path
+```
+source_data_path: $your-source-data-folder
+output_data_path: $your-target-data-folder
+```
+4. The final step is to run the application. Move to $app_local_dir/spark-submit/ and call the spark-submit script as below
+```
+cd $app_local_dir/spark-submit
+sh spark-submit.sh analytics1
+```
+5. The above command triggeres the analytics1.py module and the result data set will be found in $your-target-data-folder/ANALYTICS1/
