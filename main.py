@@ -8,7 +8,9 @@ from jobs import logging
 def _parse_arguments():
     """ 
     Parse arguments provided by spark-submit command
+    :return: arguments object
     """
+    
     parser = argparse.ArgumentParser()
     parser.add_argument("--job", required=True)
     parser.add_argument("--config_folder", required=True)
