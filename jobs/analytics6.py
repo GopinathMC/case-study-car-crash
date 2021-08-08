@@ -6,18 +6,18 @@ from pyspark.sql.functions import col,row_number
 
 def transform_data(raw_df,spark):
     """
-    Transform the raw data based on the business logic
+    Transform the person dataframe and return the top5 zip code where alcohol is the contributing factor of crash
 
-    :param raw_df: spark dataframe
+    :param raw_df: person spark dataframe
     :param spark: spark session object
+    :return: spark dataframe
     """
 
     w = Window.orderBy(col('count').desc())
     drv_zip_alc_df = raw_df.filter("PRSN_ALC_RSLT_ID == 'Positive' and DRVR_ZIP is not null").select('DRVR_ZIP').groupBy('DRVR_ZIP').count()
     drv_alc_zip_top5_df = drv_zip_alc_df.withColumn('rn',row_number().over(w)).filter("rn<=5").select('DRVR_ZIP')
-    return (
-        drv_alc_zip_top5_df
-        )
+    return drv_alc_zip_top5_df
+        
 
 
 def run_job(spark,config,log):
@@ -27,6 +27,7 @@ def run_job(spark,config,log):
     :param spark: spark session object
     :param config: config file
     :param log: spark logger object
+    :return: None
     """	
 
     log.info('Extracting source csv files')
@@ -35,3 +36,4 @@ def run_job(spark,config,log):
     log.info('All transformations done and writing to output path.......')
     push_data(out_df,f"{config.get('output_data_path')}/ANALYTICS6",config.get('write_mode'))
     log.info("File pushed successfully")
+    return None

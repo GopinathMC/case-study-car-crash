@@ -1,8 +1,7 @@
 """
-logging
 
-This module contains a class that wraps the log4j object instantiated
-by the active SparkContext, enabling Log4j logging for PySpark using.
+logging class where log4j object will be instantiated by spark context, 
+and tells pyspark app to log on various user defined levels
 """
 
 

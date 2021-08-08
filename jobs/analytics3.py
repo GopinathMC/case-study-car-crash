@@ -6,19 +6,21 @@ from pyspark.sql.functions import col,rank
 
 def transform_data(raw_df,spark):
     """
-    Transform the raw data based on the business logic
+    Transform the person use dataframe and return the state with highest number of accidents where females are involved
 
-    :param raw_df: spark dataframe
+    :param raw_df: person use spark dataframe
     :param spark: spark session object
+    :return: spark dataframe
     """
 
     w = Window.orderBy(col('count').desc())
+
+    #excluding rows where no state name is registered
     excl_states = ['NA','Unknown','Other']
+
     most_acc_female_df = raw_df.filter("PRSN_GNDR_ID=='FEMALE'").filter(~col('DRVR_LIC_STATE_ID').isin(excl_states)).select('DRVR_LIC_STATE_ID').groupBy('DRVR_LIC_STATE_ID').count()
     fn_fem_acc_df = most_acc_female_df.withColumn('rn',rank().over(w)).filter(col('rn')==1).select('DRVR_LIC_STATE_ID').withColumnRenamed('DRVR_LIC_STATE_ID','MOST_FEM_ACCIDENT_STATE')
-    return (
-        fn_fem_acc_df
-        )
+    return fn_fem_acc_df
 
 
 def run_job(spark,config,log):
@@ -28,6 +30,7 @@ def run_job(spark,config,log):
     :param spark: spark session object
     :param config: config file
     :param log: spark logger object
+    :return: None
     """
 
     log.info('Extracting Primary_Person_use csv file')
@@ -36,3 +39,4 @@ def run_job(spark,config,log):
     log.info('All transformations done and writing to output path.......')
     push_data(out_df,f"{config.get('output_data_path')}/ANALYTICS3",config.get('write_mode'))
     log.info("File pushed successfully")
+    return None
