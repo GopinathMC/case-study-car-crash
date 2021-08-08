@@ -1,6 +1,6 @@
 from data_extracter import extract_data,push_data
 from pyspark.sql import Window
-from pyspark.sql.functions import col,dense_rank,sum
+from pyspark.sql.functions import col,row_number,sum
 from pyspark.sql.types import IntegerType
 
 
@@ -20,8 +20,7 @@ def transform_data(unit_df,spark):
                     .withColumn('INJR_DEATH_CNT',col('INJR_DEATH_CNT').cast(IntegerType())).select('VEH_MAKE_ID','INJR_DEATH_CNT')
     sum_df_agg = sum_df.groupBy('VEH_MAKE_ID').agg(sum(col('INJR_DEATH_CNT')).alias('TOT_INJ_DEATH_CNT'))
    
-    # using dense_rank function, since there are chances that multiple vehicle make can have same number of death and those vehicles make id are considered in same rank
-    veh_most_inju_df = sum_df_agg.withColumn('rn',dense_rank().over(w)).filter("rn >=5 and rn <=15") \
+    veh_most_inju_df = sum_df_agg.withColumn('rn',row_number().over(w)).filter("rn >=5 and rn <=15") \
                                   .select('VEH_MAKE_ID').withColumnRenamed('VEH_MAKE_ID','MOST_INJR_DEATH_VEH_MAKE_ID')    
     return veh_most_inju_df
 
