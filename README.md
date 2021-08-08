@@ -138,3 +138,4 @@ sh spark-submit.sh analytics1
 | 1    | spark           | 3.0.1   |
 | 2    | python          | 3.8.5   |
 | 3    | bash            | 3.2.57  |
+| 4    | macOS Catalina  | 10.15.6 |
