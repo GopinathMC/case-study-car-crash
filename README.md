@@ -34,7 +34,7 @@ root/
          |-- extract_join_data: get two spark dataframe,the type of join and joining columns to perform the join operation
          |-- push_data: get the spark dataframe and output file path to push the dataframe as csv file
 ```
-3. ```logging.py``` This module contains a class that wraps the log4j object instantiated by the active SparkContext, enabling Log4j logging for PySpark using.
+3. ```logging.py``` logger class where log4j object will be instantiated by spark context, and tells pyspark app to log on various user defined levels
 4. ```analytics$.py``` This module get the spark session object, config file, spark logger object from the main function```root/main.py``` and call necessary dependent modules, methods to perform ETL operation.
 ```
          |-- run_job: triggered by the main function and call the dependent methods to perform ETL operation.
