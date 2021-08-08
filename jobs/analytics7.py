@@ -27,7 +27,7 @@ def transform_data(charge_df,damage_df,unit_df,spark):
 	                        .filter("DMAG1_RANGE > 4 or DMAG2_RANGE > 4") \
 	                        .select('CRASH_ID').distinct().count()
     return (
-        spark.createDataFrame([crash_id_count], "integer").toDF("SEV_CRASHES_COUNT")
+        spark.createDataFrame([crash_id_count], "integer").toDF("SEVERE_CRASHES_COUNT")
         )
 
 
