@@ -31,7 +31,6 @@ root/
 2. ```data_extracter.py``` module contains following methods which will be imported in analytics$.py module to perform ETL
 ```
          |-- extract_data: get the input file path, create spark dataframe and return it
-         |-- extract_join_data: get two spark dataframe,the type of join and joining columns to perform the join operation
          |-- push_data: get the spark dataframe and output file path to push the dataframe as csv file
 ```
 3. ```logging.py``` logger class where log4j object will be instantiated by spark context, and tells pyspark app to log on various user defined levels
@@ -59,15 +58,15 @@ root/
 1. This is the entry point for this spark application which will be called through spark-submit command.
 2. It parse the spark-submit additional arguments using argparse python library, and calls the necessary ETL jobs. 
 3. Here the spark session object, spark logger object is created, and triggers the respective analytics$.py file based on the --job parameter passed with spark-submit command. i.e spark-submit main.py --job analytics1, this will tells the main.py file to call analytics1.py file to perform necessary operation
-4. This is the place where ```config.json``` file is read and pass it to the corresponding analytics$.py modules.
+4. In this module ```config.json``` file is read and pass it to the corresponding analytics$.py modules.
 
 ### Configuring input and output data folder
 ```root/config.json```
 The config file looks like below
 ```json
 {
-  "app_name": "US_ACCIDENT_REPORT",
-  "source_data_path": "/Users/dev/Documents/assignment/case_study/Data",
+  "app_name": "case-study-car-crash",
+  "source_data_path": "/Users/dev/Documents/assignment/case_study/Data/INPUT",
   "output_data_path": "/Users/dev/Documents/assignment/case_study/Data/OUTPUT",
   "write_mode": "overwrite"
 }
@@ -75,7 +74,7 @@ The config file looks like below
 1. app_name: Defines the spark application name
 2. source_data_path: Defines the folder where input data files are stored
 3. output_data_path: Defines the folder where output data file will be written. For each analytics$ job, the file will be written like $output_data_path/ANALYTICS$/
-i.e. for analytics1.py analysis the output files will be written to $output_data_path/ANALYTICS1/
+i.e. for analytics1.py the output files will be written to $output_data_path/ANALYTICS1/
 4. write_mode: Defines the spark write mode of the application. (i.e. overwrite, append, Ignore, ErrorIfExists)
 
 ###spark-submit
@@ -123,7 +122,7 @@ APP_DIR=/user/home/spark_app/case-study-car-crash
 source_data_path: $your-source-data-folder-path
 output_data_path: $your-target-data-folder-path
 ```
-4. The final step is to run the application. Move to $app_local_dir/spark-submit/ and call the spark-submit script as below
+4. The final step is to run the application. Move to /user/home/spark_app/case-study-car-crash/spark-submit/ and call the spark-submit script as below
 ```
 cd /user/home/spark_app/case-study-car-crash/spark-submit
 sh spark-submit.sh analytics1
@@ -132,6 +131,7 @@ sh spark-submit.sh analytics1
 
 
 ## Tools and versions
+This spark application in tested successfully in local machine with below tools/languages versions
 
 | s.no | Tools/Languages | Version |
 |------|-----------------|---------|
