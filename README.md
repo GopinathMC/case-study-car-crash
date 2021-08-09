@@ -77,7 +77,7 @@ The config file looks like below
 i.e. for analytics1.py the output files will be written to $output_data_path/ANALYTICS1/
 4. write_mode: Defines the spark write mode of the application. (i.e. overwrite, append, Ignore, ErrorIfExists)
 
-###spark-submit
+### spark-submit
 This folder contain the spark-submit.sh shell script shown as below, which can be triggered like ```sh spark-submit analytics$```
 ```shell
 #!/bin/bash
