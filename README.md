@@ -65,7 +65,7 @@ root/
 The config file looks like below
 ```json
 {
-  "app_name": "case-study-car-crash",
+  "app_name": "US_ACCIDENT_REPORT",
   "source_data_path": "/Users/dev/Documents/assignment/case_study/Data/INPUT",
   "output_data_path": "/Users/dev/Documents/assignment/case_study/Data/OUTPUT",
   "write_mode": "overwrite"
