@@ -103,7 +103,7 @@ bin/spark-submit \
 4. APP_DIR: This application installed directory.
 
 #### Spark-Submit command
-1. --master: Runs the spark application on local mode
+1. --master: Runs the spark application locally with worker threads equal to number of logical cores on local machine
 2. --py-files: Python dependency files which will be called by the main function.
 3. --files: Passes the config file to the spark application.
 4. --job: calls the corresponding analytics$.py module.
